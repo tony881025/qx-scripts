@@ -1,15 +1,15 @@
 // Quantumult X 手动测速脚本
-// 轻量版测速，下载固定文件，输出 KB/s
+// 下载指定文件，计算实际下载速度 KB/s
 
-const url = "https://speed.hetzner.de/100MB.bin"; // 测试文件，可换成其他 CDN
+const url = "https://213-159-76-8.lg.looking.house/1000.mb"; // 测速文件
 const startTime = Date.now();
 let receivedBytes = 0;
 
-fetch(url, {method: "GET"})
+fetch(url, { method: "GET" })
 .then(res => {
     const reader = res.body.getReader();
     function readChunk() {
-        return reader.read().then(({done, value}) => {
+        return reader.read().then(({ done, value }) => {
             if (done) {
                 const endTime = Date.now();
                 const seconds = (endTime - startTime) / 1000;
